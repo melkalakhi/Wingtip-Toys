@@ -190,16 +190,17 @@ public class NVPAPICaller
 
         try
         {
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
             using (StreamWriter myWriter = new StreamWriter(objRequest.GetRequestStream()))
             {
                 myWriter.Write(strPost);
             }
         }
-        catch (Exception)
+        catch (Exception e)
         {
-            // No logging for this tutorial.
+            // Log the exception.
+            Wingtip_Toys.Logic.ExceptionUtility.LogException(e, "HttpCall in PayPalFunction.cs");
         }
 
         //Retrieve the Response returned from the NVP API call to PayPal.
